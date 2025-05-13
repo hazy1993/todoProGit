@@ -33,4 +33,28 @@ public class Users {
     public String getUpdateDt() {
         return updateDt;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public void setUserNm(String userNm) {
+        this.userNm = userNm;
+    }
+
+    public void setPw(String pw) {
+        this.pw = pw;
+    }
+
+    public void setInsertDt(String insertDt) {
+        this.insertDt = insertDt;
+    }
+
+    public void setUpdateDt(String updateDt) {
+        this.updateDt = updateDt;
+    }
 }

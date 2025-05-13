@@ -42,7 +42,7 @@ public class usersController {
         Users userInfo = usersService.getUsers(users);
 
         if(userInfo == null){
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(Map.of("message", msg));
         }
 

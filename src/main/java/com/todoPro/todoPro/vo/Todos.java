@@ -66,4 +66,28 @@ public class Todos {
     public String getUpdateDt() {
         return updateDt;
     }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setModId(String modId) {
+        this.modId = modId;
+    }
+
+    public void setExecDt(String execDt) {
+        this.execDt = execDt;
+    }
+
+    public void setInsertDt(String insertDt) {
+        this.insertDt = insertDt;
+    }
+
+    public void setUpdateDt(String updateDt) {
+        this.updateDt = updateDt;
+    }
 }
