@@ -42,19 +42,6 @@ public class SecurityConfig {
                 ) .addFilterBefore(new JwtAuthenticationFilter(jwtUtil,usersService),
                         UsernamePasswordAuthenticationFilter.class)
 
-
-                /*.exceptionHandling(ex -> ex
-                         .authenticationEntryPoint((request, response, authException) -> {
-                         response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized"); // 토큰없을경우 401 응답을 명시적으로 처리
-                     })
-                )*/
-                // Form 로그인을 활용하는경우 (JWT에는 필요없음)
-          /*      .formLogin(form -> form
-                       // .loginPage("/loginform")
-                        .loginProcessingUrl("users/login")
-                        .defaultSuccessUrl("/")
-                        .permitAll()
-                )*/
                 .logout((logout) -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/")
