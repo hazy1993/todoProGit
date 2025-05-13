@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.todoPro.todoPro.Mapper.TodoMapper">
+
+
+    <insert id="createTodos" parameterType="com.todoPro.todoPro.vo.Todos"
+            useGeneratedKeys="true" keyProperty="id">
+
+        <selectKey keyProperty="id" resultType="long" order="BEFORE">
+            SELECT IFNULL(MAX(id), 0) + 1 FROM TODOS
+        </selectKey>
+
+        INSERT INTO TODOS (ID, TITLE,CONTENT, REG_ID,EXEC_DT,INSERT_DT)
+        VALUES (
+               #{id}
+               ,#{title}
+               ,#{content}
+               ,#{regId}
+               ,#{execDt}
+               ,DATETIME('now')
+               )
+    </insert>
+
+    <select id="getAllTodos" parameterType="com.todoPro.todoPro.vo.Todos" resultType="com.todoPro.todoPro.vo.Todos">
+        SELECT * FROM TODOS
+    </select>
+
+    <select id="getTodosById" parameterType="com.todoPro.todoPro.vo.Todos" resultType="com.todoPro.todoPro.vo.Todos">
+        SELECT * FROM TODOS
+        WHERE ID = #{id}
+    </select>
+
+
+    <update id="updateTodo" parameterType="com.todoPro.todoPro.vo.Todos"
+            useGeneratedKeys="true" keyProperty="id">
+        UPDATE TODOS SET
+               title = #{title}
+              ,CONTENT = #{content}
+              ,MOD_ID = #{modId}
+              ,EXEC_DT = #{execDt}
+              ,UPDATE_DT = DATETIME('now')
+        WHERE ID = #{id}
+    </update>
+
+    <delete id="deleteTodos" parameterType="com.todoPro.todoPro.vo.Todos">
+        DELETE FROM TODOS
+        WHERE ID = #{id}
+    </delete>
+
+    <select id="searchTodos" parameterType="com.todoPro.todoPro.vo.Todos" resultType="com.todoPro.todoPro.vo.Todos">
+        SELECT * FROM TODOS
+        WHERE 1=1
+        <if test="title != null and title != ''">
+            AND TITLE LIKE '%' || #{title} || '%'
+        </if>
+        <if test="content != null and content != ''">
+            AND content LIKE '%' || #{content} || '%'
+        </if>
+
+    </select>
+
+</mapper>

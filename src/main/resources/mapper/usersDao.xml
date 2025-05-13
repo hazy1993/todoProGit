@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.todoPro.todoPro.Mapper.UsersMapper">
+
+    <insert id="signup" parameterType="com.todoPro.todoPro.vo.Users">
+        <selectKey keyProperty="id" resultType="long" order="BEFORE">
+            SELECT IFNULL(MAX(id), 0) + 1 FROM USERS
+        </selectKey>
+        INSERT INTO USERS (id, user_id,pw, user_nm, insert_dt)
+        VALUES(
+                #{id}
+               ,#{userId}
+               ,#{pw}
+               ,#{userNm}
+               ,DATETIME('now')
+        )
+
+    </insert>
+
+    <select id="getUsers" parameterType="com.todoPro.todoPro.vo.Users" resultType="com.todoPro.todoPro.vo.Users">
+        SELECT * FROM USERS
+        WHERE USER_ID = #{userId}
+    </select>
+
+    <select id="findUsers" parameterType="java.lang.String" resultType="com.todoPro.todoPro.vo.Users">
+        SELECT USER_ID,PW FROM USERS
+        WHERE USER_ID = #{userId}
+    </select>
+
+    <update id="updateUser" parameterType="com.todoPro.todoPro.vo.Users">
+        UPDATE USERS SET
+                PW = #{pw}
+               ,UPDATE_DT = DATETIME('now')
+        WHERE USER_ID = #{userId}
+    </update>
+
+    <delete id="deleteUser" parameterType="com.todoPro.todoPro.vo.Users">
+        DELETE FROM USERS
+        WHERE USER_ID = #{userId}
+    </delete>
+
+</mapper>
